@@ -1,6 +1,6 @@
 const convict = require('convict')
 
-module.exports = convict({
+let config = convict({
   irc: {
     /* Most of these are taken from the node-irc module */
     server: {
@@ -88,4 +88,7 @@ try {
   config.loadFile((process.env.NODE_ENV || 'config') + '.json')
 } catch (e) {
   console.error('Not loading configuration from file')
+  console.error(e)
 }
+
+module.exports = config
